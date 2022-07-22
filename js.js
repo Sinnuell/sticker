@@ -12,23 +12,23 @@ createNote.addEventListener("click", () => {
 
         newDiv.style.cssText = "position: absolute;text-decoration:none; color:#000; background:#ffc;  display:block; height:15rem; width:15rem; padding:1em;  box-shadow: 0 5px 10px 3px rgba(33,33,33,.7); "
         panel.appendChild(newDiv);
-    let textContent = false;
-        if(!textContent){
-            newDiv.addEventListener("click", function(e){
-            let textContent = document.createElement("input");
+    
+       
+        
+        let textContent = document.createElement("textarea");
 textContent.setAttribute("type","textarea");
 textContent.setAttribute("name", "text");
-textContent.setAttribute("maxlength", "140");
+textContent.setAttribute("maxlength", "100");
 
-textContent.style.cssText = "width:180px; height:180px; padding: 5px; font-size: 1.5rem; background: #fff;"
+textContent.style.cssText = "width:180px; height:180px; padding: 5px; font-size: 1.5rem; background: #fff; overflow-wrap: break-word; font-family: 'Verdana'; overflow: hidden"
 newDiv.appendChild(textContent);
-textContent = true;
+
         })
-        }
+        
         
 
 
-    } );
+     
 
 
 // обработчик один на все div, которые вложены в элемент #panel
