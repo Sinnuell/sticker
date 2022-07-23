@@ -1,7 +1,10 @@
+
+
 let panel = document.querySelector("#panel");
 let move = false;
 let offsetX, offsetY;
 let currentDiv = document.getElementById("div");
+
 
 
 // создаем новые стики
@@ -9,21 +12,34 @@ let createNote = document.querySelector(".btn");
 
 createNote.addEventListener("click", () => {
         let newDiv = document.createElement("div");
-
-        newDiv.style.cssText = "position: absolute;text-decoration:none; color:#000; background:#ffc;  display:block; height:15rem; width:15rem; padding:1em;  box-shadow: 0 5px 10px 3px rgba(33,33,33,.7); "
-        panel.appendChild(newDiv);
-    
-       
+        newDiv.setAttribute("class", "sticker")
         
+        panel.appendChild(newDiv);
+
+
+// кнопка закрытия
+let removeStic = document.createElement("button");
+removeStic.setAttribute("class", "close");
+
+
+removeStic.addEventListener("click", function(e){
+    panel.removeChild(newDiv);
+})
+newDiv.appendChild(removeStic);       
+ 
+// создание текстового поля
         let textContent = document.createElement("textarea");
 textContent.setAttribute("type","textarea");
 textContent.setAttribute("name", "text");
-textContent.setAttribute("maxlength", "100");
+textContent.setAttribute("maxlength", "65");
+textContent.setAttribute("class", "textarea")
 
-textContent.style.cssText = "width:180px; height:180px; padding: 5px; font-size: 1.5rem; background: #fff; overflow-wrap: break-word; font-family: 'Verdana'; overflow: hidden"
+
 newDiv.appendChild(textContent);
 
-        })
+
+
+        });
         
         
 
@@ -51,7 +67,14 @@ document.addEventListener("mouseup", function (e) {
     move = false;
 });
 
-// let textContent = document.createElement("input");
-// textContent.setAttribute("type","text");
-// textContent.setAttribute("name", "text");
-// newDiv.appendChild(textContent);
+
+
+//сохранение в локальном хранилище
+//  localStorage.setItem('stic', newDiv);
+//  divStor = localStorage.getItem('stic');
+
+const isShow = !!parseInt(localStorage.getItem('isShow'));
+if(isShow) {
+    localStorage.appendChild("container");
+}
+localStorage.setItem('isShow', panel);
